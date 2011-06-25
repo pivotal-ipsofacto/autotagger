@@ -46,15 +46,18 @@ function addRule(trigger, results) {
     newDiv.appendChild(resultsInput);
     rulesDiv.appendChild(newDiv);
 }
+
 $(document).ready( function() {
     loadRules();
-    addRule();
+    addRule(); addRule(); addRule(); addRule(); addRule();
 });
 </script>
 </head>
 <body>
   <h1>Autotagger Options</h1>
   <p>On the left, put the tag you want the rule to trigger on. On the right, put the tags you want to be automatically inserted, separated by commas.</p>
+  <p>If you run out of rules, save and refresh to get five more. Yes, this is an ugly hack that I'm going to fix eventually.</p>
   <div id="rules"></div>
+  <input onclick="save()" type="button" value="Save" />
 </body>
 </html>
