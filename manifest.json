@@ -1,0 +1,9 @@
+{
+    "name" : "Autotagger",
+    "version" : "0.0.0",
+    "description" : "Automatically add tags based on a predefined set of rules",
+    "content_scripts": [{
+	"matches" : ["http://www.tumblr.com/new/*"],
+	"js" : ["jquery.min.js", "autotagger.js"]
+    }]
+}
