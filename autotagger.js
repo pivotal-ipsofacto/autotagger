@@ -1,6 +1,13 @@
 var input = $('#tag_editor_input')[0];
 var tokens = $('#tokens')[0];
-var triggers = {};
+var rules = {};
+console.log("sending request");
+chrome.extension.sendRequest("getSettings", function(resp) {
+
+    rules = JSON.parse(resp)["rules"];
+    console.log(rules);
+});
+
 
 function addTag(tag) {
     if (getTags().indexOf(tag) != -1) // no dupe tags
@@ -17,10 +24,10 @@ function getTags() {
 
 function handleNewTag(event) {
     var newTag = event.target.children[0].innerHTML;
-    if (newTag in triggers) {
+    if (newTag in rules) {
 	tokens.removeEventListener("DOMNodeInserted", handleNewTag, false);
-	for (tag in triggers[newTag]) {
-	    add_tag(triggers[newTag][tag]);
+	for (tag in rules[newTag]) {
+	    addTag(rules[newTag][tag]);
 	}
     }
     tokens.addEventListener("DOMNodeInserted", handleNewTag, false);
