@@ -13,6 +13,21 @@
 <script src="jquery-1.6.1.js" type="text/javascript"></script>
 <script type="text/javascript">
 
+defaults = {"rules" : {"COOLK1DS B31NG COOL" : ["dave", "terezi"]}};
+
+if (localStorage["settings"])
+    settings = JSON.parse(localStorage["settings"])
+else
+    settings = defaults;
+
+function loadRules() {
+    rules = settings["rules"];
+    for (trigger in rules) {
+	results = rules[trigger];
+	addRule(trigger, results.join(", "));
+    }
+}
+
 function addRule(trigger, results) {
     trigger = trigger || "";
     results = results || "";
@@ -32,9 +47,9 @@ function addRule(trigger, results) {
     rulesDiv.appendChild(newDiv);
 }
 $(document).ready( function() {
+    loadRules();
     addRule();
-    addRule("foo", "bar");
-    });
+});
 </script>
 </head>
 <body>
