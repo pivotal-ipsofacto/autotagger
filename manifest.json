@@ -1,6 +1,6 @@
 {
     "name" : "Autotagger",
-    "version" : "0.1",
+    "version" : "0.1.1",
     "description" : "Automatically add tags based on a predefined set of rules",
     "content_scripts": [{
 	"matches" : ["http://www.tumblr.com/new/*",
