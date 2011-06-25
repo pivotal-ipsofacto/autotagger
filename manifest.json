@@ -3,7 +3,9 @@
     "version" : "0.1",
     "description" : "Automatically add tags based on a predefined set of rules",
     "content_scripts": [{
-	"matches" : ["http://www.tumblr.com/new/*"],
+	"matches" : ["http://www.tumblr.com/new/*",
+		     "http://www.tumblr.com/edit/*",
+		     "http://www.tumblr.com/reblog/*"],
 	"js" : ["jquery-1.6.1.js", "autotagger.js"]
     }],
     "icons" : {
