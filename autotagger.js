@@ -1,8 +1,9 @@
 var input = $('#tag_editor_input')[0];
 var tokens = $('#tokens')[0];
+var triggers = {};
 
 function addTag(tag) {
-    if (get_tags().indexOf(tag) != -1) // no dupe tags
+    if (getTags().indexOf(tag) != -1) // no dupe tags
 	return;
 
     tokens.innerHTML += '<div class="token"><span class="tag">' + tag + '</span><a href="#" onclick="tag_editor_remove_tag($(this).up()); return false;">x</a></div>';
@@ -13,8 +14,6 @@ function getTags() {
     $('.token > .tag').each(function() { tagTexts.push($(this).text()) } );
     return tagTexts;
 }
-
-
 
 function handleNewTag(event) {
     var newTag = event.target.children[0].innerHTML;
@@ -29,4 +28,4 @@ function handleNewTag(event) {
 
 tokens.addEventListener("DOMNodeInserted", handleNewTag, false);
 
-var triggers = {"COOLK1DS B31NG COOL": ["dave", "terezi"]};
+triggers = {"COOLK1DS B31NG COOL": ["dave", "terezi"]};
