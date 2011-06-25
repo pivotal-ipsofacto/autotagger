@@ -27,5 +27,3 @@ function handleNewTag(event) {
 }
 
 tokens.addEventListener("DOMNodeInserted", handleNewTag, false);
-
-triggers = {"COOLK1DS B31NG COOL": ["dave", "terezi"]};
