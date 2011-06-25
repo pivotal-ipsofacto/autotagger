@@ -6,6 +6,10 @@
 	"matches" : ["http://www.tumblr.com/new/*"],
 	"js" : ["jquery-1.6.1.js", "autotagger.js"]
     }],
+    "icons" : {
+	"128" : "icon128.png",
+	"48" : "icon48.png",
+	"16" : "icon16.png"},
     "options_page" : "options.html",
     "background_page" : "background.html"
 }
