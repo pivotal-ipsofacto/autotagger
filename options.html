@@ -54,11 +54,13 @@ function save() {
 	trigger = $(this)[0].children[0].value;
 	if (!trigger)
 	    return;
+	trigger = trigger.replace("#", "");
 	resultList = $(this)[0].children[1].value.split(",");
 	strippedList = [];
 	$.each(resultList,
 	       function(index, value) {
 		   value = value.replace(/^\s+|\s+$/g, ''); // trim whitespace
+		   value = value.replace("#", '');
 		   strippedList.push(value);
 	       });
 	settings["rules"][trigger] = strippedList;
@@ -75,7 +77,7 @@ $(document).ready( function() {
 </head>
 <body>
   <h1>Autotagger Options</h1>
-  <p>On the left, put the tag you want the rule to trigger on. On the right, put the tags you want to be automatically inserted, separated by commas.</p>
+  <p>On the left, put the tag you want the rule to trigger on. On the right, put the tags you want to be automatically inserted, separated by commas. Putting a # in the tag name is unnecessary but harmless.</p>
   <p>If you run out of rules, save and refresh to get five more. Yes, this is an ugly hack that I'm going to fix eventually.</p>
   <div id="rules"></div>
   <input onclick="save()" type="button" value="Save" />
