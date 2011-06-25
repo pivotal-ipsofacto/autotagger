@@ -4,6 +4,7 @@
     "description" : "Automatically add tags based on a predefined set of rules",
     "content_scripts": [{
 	"matches" : ["http://www.tumblr.com/new/*"],
-	"js" : ["jquery.min.js", "autotagger.js"]
-    }]
+	"js" : ["jquery-1.6.1.js", "autotagger.js"]
+    }],
+    "options_page" : "options.html"
 }

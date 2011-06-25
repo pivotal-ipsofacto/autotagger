@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head><title>Tumblr Hate Options</title>
+  <style type="text/css">
+    body {
+	background: #2C4762;
+	text-align: center;
+	color: white;
+	font-family: Arial, Helvetica, sans-serif;
+    }
+    input {font-size: medium};
+  </style>
+<script src="jquery-1.6.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+function addRule(trigger, results) {
+    trigger = trigger || "";
+    results = results || "";
+    rulesDiv = $('#rules')[0]
+    newDiv = document.createElement('div');
+    newDiv.classList.add('rule');
+    triggerInput = document.createElement('input');
+    triggerInput.classList.add("trigger");
+    triggerInput.size = 30;
+    triggerInput.value = trigger;
+    resultsInput = document.createElement('input');
+    resultsInput.classList.add("results");
+    resultsInput.size = 60;
+    resultsInput.value = results;
+    newDiv.appendChild(triggerInput);
+    newDiv.appendChild(resultsInput);
+    rulesDiv.appendChild(newDiv);
+}
+$(document).ready( function() {
+    addRule();
+    addRule("foo", "bar");
+    });
+</script>
+</head>
+<body>
+  <h1>Autotagger Options</h1>
+  <p>On the left, put the tag you want the rule to trigger on. On the right, put the tags you want to be automatically inserted, separated by commas.</p>
+  <div id="rules"></div>
+</body>
+</html>
