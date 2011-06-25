@@ -1,14 +1,14 @@
 var input = $('#tag_editor_input')[0];
 var tokens = $('#tokens')[0];
 
-function add_tag(tag) {
+function addTag(tag) {
     if (get_tags().indexOf(tag) != -1) // no dupe tags
 	return;
 
     tokens.innerHTML += '<div class="token"><span class="tag">' + tag + '</span><a href="#" onclick="tag_editor_remove_tag($(this).up()); return false;">x</a></div>';
 }
 
-function get_tags() {
+function getTags() {
     var tagTexts = [];
     $('.token > .tag').each(function() { tagTexts.push($(this).text()) } );
     return tagTexts;
