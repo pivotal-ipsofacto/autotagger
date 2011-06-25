@@ -1,11 +1,8 @@
 var input = $('#tag_editor_input')[0];
 var tokens = $('#tokens')[0];
 var rules = {};
-console.log("sending request");
 chrome.extension.sendRequest("getSettings", function(resp) {
-
     rules = JSON.parse(resp)["rules"];
-    console.log(rules);
 });
 
 
