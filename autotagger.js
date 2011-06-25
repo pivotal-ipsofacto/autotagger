@@ -6,3 +6,9 @@ function add_tag(tag) {
     console.log(tok.constructor.toString());
     tok.innerHTML += '<div class="token"><span class="tag">' + tag + '</span><a href="#" onclick="tag_editor_remove_tag($(this).up()); return false;">x</a></div>';
 }
+
+function get_tags() {
+    var tagTexts = [];
+    $('.token > .tag').each(function() { tagTexts.push($(this).text()) } );
+    return tagTexts;
+}
