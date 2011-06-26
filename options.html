@@ -24,11 +24,11 @@ function loadRules() {
     rules = settings["rules"];
     for (trigger in rules) {
 	results = rules[trigger];
-	addRule(trigger, results.join(", "));
+	addRule(false, trigger, results.join(", "));
     }
 }
 
-function addRule(trigger, results) {
+function addRule(fade, trigger, results) {
     trigger = trigger || "";
     results = results || "";
     rulesDiv = $('#rules')[0];
@@ -39,13 +39,19 @@ function addRule(trigger, results) {
     triggerInput.classList.add("trigger");
     triggerInput.size = 30;
     triggerInput.value = trigger;
+    triggerInput.onfocus = ruleFocus;
     resultsInput = document.createElement('input');
     resultsInput.classList.add("results");
     resultsInput.size = 60;
     resultsInput.value = results;
+    resultsInput.onfocus = ruleFocus;
     newDiv.appendChild(triggerInput);
     newDiv.appendChild(resultsInput);
+    if (fade) {
+	newDiv.style.display = "none";
+    }
     rulesDiv.appendChild(newDiv);
+    $('.rule:hidden').fadeIn();
 }
 
 function save() {
@@ -69,16 +75,28 @@ function save() {
     location.reload();
 }
 
+function ruleFocus(event) {
+    target = event.target;
+    hasEmpty = false;
+    $('.rule').each(function () {
+	trigger = $(this)[0].children[0];
+	results = $(this)[0].children[1];
+	if (trigger.value === "" && results.value === "" &&
+	    trigger != target && results != target)
+	    hasEmpty = true;
+    });
+    if (!hasEmpty) 
+	addRule(true);
+}
 $(document).ready( function() {
     loadRules();
-    addRule(); addRule(); addRule(); addRule(); addRule();
+    addRule();
 });
 </script>
 </head>
 <body>
   <h1>Autotagger Options</h1>
   <p>On the left, put the tag you want the rule to trigger on. On the right, put the tags you want to be automatically inserted, separated by commas. Putting a # in the tag name is unnecessary but harmless.</p>
-  <p>If you run out of rules, save and refresh to get five more. Yes, this is an ugly hack that I'm going to fix eventually.</p>
   <div id="rules"></div>
   <input onclick="save()" type="button" value="Save" />
   <input onclick='delete localStorage["settings"]; location.reload()' type="button" value="Clear" />
