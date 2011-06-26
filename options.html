@@ -81,6 +81,10 @@ function ruleFocus(event) {
     $('.rule').each(function () {
 	trigger = $(this)[0].children[0];
 	results = $(this)[0].children[1];
+	if (hasEmpty) {
+	    $(this).fadeOut(200, function() { $(this).detach() });
+	    return;
+	}
 	if (trigger.value === "" && results.value === "" &&
 	    trigger != target && results != target)
 	    hasEmpty = true;
