@@ -72,7 +72,6 @@ function save() {
 	settings["rules"][trigger] = strippedList;
     });
     localStorage["settings"] = JSON.stringify(settings);
-    location.reload();
 }
 
 function ruleFocus(event) {
