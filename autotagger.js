@@ -5,9 +5,16 @@ chrome.extension.sendRequest("getSettings", function(resp) {
     rules = JSON.parse(resp)["rules"];
 });
 
-
+var initialTags = $('#post_tags')[0].value.split(",");
+console.log(initialTags);
 function addTag(tag) {
-    if (getTags().indexOf(tag) != -1) // no dupe tags
+    var index = initialTags.indexOf(tag);
+    if (index != -1) {
+	initialTags.splice(index, 1);
+	return;
+    }
+
+    if (tag in getTags()) // no dupe tags
 	return;
 
     tokens.innerHTML += '<div class="token"><span class="tag">' + tag + '</span><a href="#" onclick="tag_editor_remove_tag($(this).up()); return false;">x</a></div>';
@@ -29,5 +36,6 @@ function handleNewTag(event) {
     }
     tokens.addEventListener("DOMNodeInserted", handleNewTag, false);
 }
+
 
 tokens.addEventListener("DOMNodeInserted", handleNewTag, false);
